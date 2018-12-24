@@ -51,7 +51,7 @@ export default class Consensus extends Component{
                                 <span>The chain appears to be stopped for <em>{moment(this.props.consensus.latestBlockTime).fromNow(true)}</em>! Feed me with new blocks 😭!</span>             
                         </Card>:''}
                         <Card className="status consensus-state">
-                            <div className="card-header">Consensus State</div>
+                            <div className="card-header">Consensus State {/* <Link className="float-right" to="/consensus">More...</Link>*/}</div> 
                             <CardBody>
                             <Row>
                                 <Col md={8} lg={6}>
@@ -90,7 +90,7 @@ export default class Consensus extends Component{
             }
             else{
                 return <div><Card body inverse color="danger">
-                    <span>The chain hasn't started yet.</span>             
+                    <span>The chain hasn't started yet. It will start at {moment(Meteor.settings.public.genesisTime).format("D MMM YYYY, h:mm:ssa")}. Please come back {moment(Meteor.settings.public.genesisTime).fromNow()}.</span>             
                 </Card></div>
             }   
         }

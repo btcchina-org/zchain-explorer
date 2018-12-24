@@ -16,6 +16,7 @@ import ValidatorFirstSeen from '/imports/ui/validators/ValidatorFirstSeen.jsx';
 import BlocksTable from '/imports/ui/blocks/BlocksTable.jsx';
 import Proposals from '/imports/ui/proposals/Proposals.jsx';
 import ValidatorDetails from '/imports/ui/validators/ValidatorDetails.jsx';
+import ConsensusState from '../ui/consensus/ConsensusState.jsx';
 
 
 import NotFound from '/imports/ui/pages/NotFound.jsx';
@@ -46,6 +47,7 @@ class App extends Component {
                             <Route path="/validators/firstseen" component={ValidatorFirstSeen} />
                             <Route path="/validator" component={ValidatorDetails} />
                             <Route path="/proposals" component={Proposals} />
+                            <Route path="/consensus" component={ConsensusState} />
                             <Route component={NotFound} />
                         </Switch>
                     </Container>

@@ -35,7 +35,7 @@ export default class List extends Component{
                 this.setState({
                     validators: this.props.validators.map((validator, i) => {
                         return <ValidatorRow 
-                            key={validator.address} 
+                            key={i} 
                             index={i} 
                             validator={validator} 
                             address={validator.address} 
