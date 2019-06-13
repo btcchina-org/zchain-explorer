@@ -6,6 +6,9 @@ import { Button, Spinner, TabContent, TabPane, Row, Col, Modal, ModalHeader,
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { Ledger } from './ledger.js';
 import { Validators } from '/imports/api/validators/validators.js';
+import i18n from 'meteor/universe:i18n';
+
+const T = i18n.createComponent();
 
 const maxHeightModifier = {
     setMaxHeight: {
@@ -23,12 +26,12 @@ const Types = {
 
 const TypeMeta = {
     [Types.DELEGATE]: {
-        button: 'delegate',
+        button: <T>messageTypes.delegate</T>,
         path: 'delegations',
         warning: ''
     },
     [Types.REDELEGATE]: {
-        button: 'redelegate',
+        button: <T>messageTypes.redelegate</T>,
         path: 'redelegations',
         warning: 'You are only able to redelegate from Validator A → Validator B up to 7 times in a 21 day period.  '+
                  'Also, There is 21 day cooldown from serial redelegation;  '+
@@ -36,7 +39,7 @@ const TypeMeta = {
                  'you will not be able to redelegate from Validator B to another validator for the next 21 days.'
     },
     [Types.UNDELEGATE]: {
-        button: 'undelegate',
+        button: <T>messageTypes.undelegate</T>,
         path: 'unbonding_delegations',
         warning: 'There is a 21-day unbonding period.' // TODO: get number from /staking/parameters
     }

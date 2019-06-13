@@ -68,14 +68,14 @@ class LedgerModal extends React.Component {
     render() {
         return (
             <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className="ledger-sign-in">
-            <ModalHeader toggle={this.props.toggle}><T>accounts.signInWithLedger</T></ModalHeader>
+            <ModalHeader toggle={this.props.toggle}><T>ledger.signInWithLedger</T></ModalHeader>
             <ModalBody>
                 <TabContent activeTab={this.state.activeTab}>
                 <TabPane tabId="1">
-                    <T _purify={false}>accounts.signInWarning</T>
+                    <T _purify={false} version="1.5.0">ledger.signInWarning</T>
                 </TabPane>
                         <TabPane tabId="2">
-                    <T>accounts.toLoginAs</T> <strong className="text-primary d-block">{this.state.address}</strong><T>accounts.pleaseAccept</T>
+                    <T>ledger.toLoginAs</T> <strong className="text-primary d-block">{this.state.address}</strong><T>ledger.pleaseAccept</T>
                 </TabPane>
             </TabContent>
             {this.state.loading?<Spinner type="grow" color="primary" />:''}

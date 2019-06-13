@@ -8,12 +8,13 @@ import secp256k1 from "secp256k1";
 import sha256 from "crypto-js/sha256"
 import ripemd160 from "crypto-js/ripemd160"
 import CryptoJS from "crypto-js"
+import i18n from 'meteor/universe:i18n';
 
 // TODO: discuss TIMEOUT value
 const INTERACTION_TIMEOUT = 120000 // seconds to wait for user action on Ledger, currently is always limited to 60
 const REQUIRED_COSMOS_APP_VERSION = "1.5.0"
-const DEFAULT_MEMO = 'Sent via Big Dipper'
-const DEFAULT_DENOM = 'uatom';
+const DEFAULT_MEMO = i18n.__('ledger', 'memo')
+const DEFAULT_DENOM = 'uatom'; // move this to settings.json?
 const DEFAULT_GAS = 200000;
 const DEFAULT_GAS_PRICE = 0.025;
 
@@ -152,24 +153,24 @@ export class Ledger {
   checkLedgerErrors(
     { error_message, device_locked },
     {
-      timeoutMessag = "Connection timed out. Please try again.",
-      rejectionMessage = "User rejected the transaction"
+      timeoutMessag = i18n.__('ledger', 'timeoutMessage'),
+      rejectionMessage = i18n.__('ledger', 'rejectionMessage')
     } = {}
   ) {
     if (device_locked) {
-      throw new Error(`Ledger's screensaver mode is on`)
+      throw new Error(i18n.__('ledger', 'screensaverMessage'))
     }
     switch (error_message) {
         case `U2F: Timeout`:
             throw new Error(timeoutMessag)
         case `Cosmos app does not seem to be open`:
-            throw new Error(`Cosmos app is not open`)
+            throw new Error(i18n.__('ledger', 'notOpenMessage'))
         case `Command not allowed`:
-            throw new Error(`Transaction rejected`)
+            throw new Error(i18n.__('ledger', 'commandNotAllowedMessage'))
         case `Transaction rejected`:
             throw new Error(rejectionMessage)
         case `Unknown error code`:
-            throw new Error(`Ledger's screensaver mode is on`)
+            throw new Error(i18n.__('ledger', 'notOpenMessage'))
         case `Instruction not supported`:
             throw new Error(
                 `Your Cosmos Ledger App is not up to date. ` +
