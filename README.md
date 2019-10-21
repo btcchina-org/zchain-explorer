@@ -22,36 +22,71 @@ Forbole Block Explorer for Cosmos
 
 [Regen Network](http://bigdipper.regen.network/)
 
-## How to run The Big Dipper
+## Edit `default_settings.json`
 
-1. Copy `default_settings.json` to `settings.json`.
-2. Update the RPC and LCD URLs.
-3. Update Bech32 address prefixes.
-4. Update genesis file location.
+- Update `chainId` and `chainName`.
+- Update the RPC and LCD URLs.
+- Update Bech32 address prefixes.
+- Update genesis file location(it's a url).
+- Update `stakingDenom` and `mintingDenom`.
 
 ### Run in local
 
+1. install dependencies
 ```sh
 meteor npm install
 meteor update
-meteor --settings settings.json
+```
+
+2. start zchaind & lcd
+```
+zchaind start
+zchaincli rest-server --trust-node
+```
+
+3. make sure genesis url is available
+
+4. run
+```
+meteor --settings default_settings.json
 ```
 
 ### Run in production
 
+1. build
 ```sh
 ./build.sh
 ```
+It will create a packaged Node JS tarball at `../output`. 
 
-It will create a packaged Node JS tarball at `../output`. Deploy that packaged Node JS project with process manager like [forever](https://www.npmjs.com/package/forever) or [Phusion Passenger](https://www.phusionpassenger.com/library/walkthroughs/basics/nodejs/fundamental_concepts.html).
+2. uncompress
 
----
-## Donations :pray:
+3. install dependencies
+```
+cd bundle/programs/server
+npm install
+```
 
-The Big Dipper is always free and open. Anyone can use to monitor available Cosmos hub or zones, or port to your own chain built with Cosmos SDK. We welcome any supports to help us improve this project.
+4. install mongodb
 
-ATOM: `cosmos1n67vdlaejpj3uzswr9qapeg76zlkusj5k875ma`\
-BTC: `1HrTuvS83VoUVA79wTifko69ziWTjEXzQS`\
-ETH: `0xec3AaC5023E0C9E2a76A223E4e312f275c76Cd77`
+5. edit `pm2.json`
 
-And by downloading and using [Brave](https://brave.com/big517).
+- Copy pm2.json here.  
+- Update `cwd`
+- Update `PORT`
+- Update `ROOT_URL`
+- Update `MONGO_URL`
+- Update `METEOR_SETTINGS`(`default_settings.json`)
+
+6. start zchaind & lcd
+```
+zchaind start
+zchaincli rest-server --trust-node
+```
+
+7. make sure genesis url is available
+
+8. run
+```
+pm2 start pm2.json
+```

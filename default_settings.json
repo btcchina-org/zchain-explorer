@@ -1,7 +1,7 @@
 {
     "public":{
-        "chainName": "Cosmos Testnet",
-        "chainId": "{Chain ID}",
+        "chainName": "ZChain Testnet",
+        "chainId": "zchain-test",
         "gtm": "{Add your Google Tag Manager ID here}",
         "slashingWindow": 10000,
         "uptimeWindow": 250,
@@ -12,16 +12,16 @@
         "bech32PrefixValPub": "cosmosvaloperpub",
         "bech32PrefixConsAddr": "cosmosvalcons",
         "bech32PrefixConsPub": "cosmosvalconspub",
-        "stakingDenom": "ATOM",
-        "mintingDenom": "uatom",
+        "stakingDenom": "ZC",
+        "mintingDenom": "zcoin",
         "stakingFraction": 1000000,
         "gasPrice": 0.02,
         "coingeckoId": "cosmos"
     },
-    "genesisFile": "{Replace the address of the genesis file of the chain}",
+    "genesisFile": "http://127.0.0.1:8000/genesis.json",
     "remote":{
-        "rpc":"https://gaia-seeds.interblock.io",
-        "lcd":"https://gaia-seeds.interblock.io:1317"
+        "rpc":"http://127.0.0.1:26657",
+        "lcd":"http://127.0.0.1:1317"
     },
     "debug": {
         "startTimer": true,
